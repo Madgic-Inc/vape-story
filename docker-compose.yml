@@ -2,17 +2,15 @@ version: '3'
 
 services:
   db:
-    image: postgres
-    container_name: postgres
+    image: mysql:latest  # Use a specific version for better control (consider 8.0)
+    container_name: mysql
     restart: always
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mysqldata:/var/lib/mysql  # Persistent storage for database data
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: myvape
-    ports:
-      - "5432:5433"
+      MYSQL_DATABASE: myvape  # Use environment variables for credentials
+      MYSQL_USER: hansolo
+      MYSQL_PASSWORD: 3001  # Consider using a stronger password generator
 
 volumes:
-  pgdata:
+  mysqldata:  # Volume name for persistent data
