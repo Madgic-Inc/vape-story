@@ -7,6 +7,9 @@
 		<link rel="icon" href="images/logo.jpeg">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+        <meta name="description" content="Sua Loja Vape Store: Sua jornada para um vape extraordinário. Explore nossa seleção incomparável de e-líquidos, dispositivos de alta qualidade e muito mais.">
+        <meta name="description" content="Sua Loja Vape Store: Encontre os melhores vapes e e-líquidos do mercado. Explore nossa seleção incomparável de produtos e desfrute de uma experiência de vape excepcional.">
+
 	</head>
 	<body class="is-preload">
 
