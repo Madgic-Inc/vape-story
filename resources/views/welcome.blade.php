@@ -4,7 +4,7 @@
 		<title>My Vape Store</title>
 		<meta charset="utf-8" />
 		<meta name="theme-color" content="#EA60D6">
-		<link rel="icon" href="images/logo.jpeg">
+		<link rel="icon" href="images/logo-sem-fundo.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
         <meta name="description" content="Sua Loja Vape Store: Sua jornada para um vape extraordinário. Explore nossa seleção incomparável de e-líquidos, dispositivos de alta qualidade e muito mais.">
@@ -55,7 +55,7 @@
 										</ul>
 									</div>
 									<span class="image object">
-										<img src="images/logo.jpeg" alt="" />
+										<img src="images/logo-sem-fundo.png" alt="" />
 									</span>
 								</section>
 
