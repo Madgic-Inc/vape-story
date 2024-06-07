@@ -81,6 +81,7 @@ class HomeController extends Controller
 
             );
         } catch (Exception $e) {
+            $allProducts = DB::table('products')->where('stock', '>', 0)->orderByDesc('id')->get();
             return view('admin.list-products')->with([
                 'error' => 'Erro ao criar produto: ' . $e->getMessage(),
                 'products' => $allProducts
