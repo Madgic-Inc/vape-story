@@ -49,7 +49,7 @@ class HomeController extends Controller
     }
 
 
-    public function storeProduct(Request $request)
+    public function storeProduct(Product $product, Request $request)
     {
         try {
 
@@ -61,7 +61,7 @@ class HomeController extends Controller
                 'image' => 'required',
             ]);
 
-            $product = Product::create([
+            $product = $product::create([
                 'name' => $request->name,
                 'value' => $request->value,
                 'stock' => $request->stock,
@@ -91,11 +91,10 @@ class HomeController extends Controller
         }
     }
 
-    public function updateProduct($id, Request $request)
+    public function updateProduct($id, Request $request, Product $product)
     {
         try {
-            $product = Product::where('id', $id)->first();
-
+            $product = $product::find($id);
 
             $product->update([
                 'name' => $request->name,
@@ -104,7 +103,7 @@ class HomeController extends Controller
                 'description' => $request->description,
             ]);
 
-            $prodcuts = Product::where('stock', '>', 0)->orderByDesc('id')->get();
+            $prodcuts = product::where('stock', '>', 0)->orderByDesc('id')->get();
 
             return view('admin.list-products')->with([
                 'success' => 'Produto ' . $product->name . ' atualizado com sucesso',
@@ -118,10 +117,10 @@ class HomeController extends Controller
         }
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct($id, Product $product)
     {
         try {
-            $product = Product::find($id);
+            $product = product::find($id);
             $product->delete();
 
             $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
