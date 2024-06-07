@@ -49,7 +49,7 @@ class HomeController extends Controller
     }
 
 
-    public function storeProduct(Product $product, Request $request)
+    public function storeProduct(Request $request)
     {
         try {
 
@@ -61,7 +61,7 @@ class HomeController extends Controller
                 'image' => 'required',
             ]);
 
-            $product = $product::create([
+            $product = DB::table('products')->create([
                 'name' => $request->name,
                 'value' => $request->value,
                 'stock' => $request->stock,
@@ -91,10 +91,11 @@ class HomeController extends Controller
         }
     }
 
-    public function updateProduct($id, Request $request, Product $product)
+    public function updateProduct($id, Request $request)
     {
         try {
-            $product = $product::find($id);
+
+            $product = DB::table('products')->where('id', '=', $id)->first();
 
             $product->update([
                 'name' => $request->name,
@@ -103,16 +104,16 @@ class HomeController extends Controller
                 'description' => $request->description,
             ]);
 
-            $prodcuts = product::where('stock', '>', 0)->orderByDesc('id')->get();
+            $products = DB::table('products')->where('stock', '>', 0)->orderByDesc('id')->get();
 
             return view('admin.list-products')->with([
                 'success' => 'Produto ' . $product->name . ' atualizado com sucesso',
-                'products' => $prodcuts
+                'products' => $products
             ]);
         } catch (Exception $e) {
             return view('admin.list-products')->with([
                 'error' => 'Erro ao atualizar produto: ' . $e->getMessage(),
-                'products' => $prodcuts
+                'products' => $products
             ]);
         }
     }
@@ -120,7 +121,7 @@ class HomeController extends Controller
     public function deleteProduct($id, Product $product)
     {
         try {
-            $product = product::find($id);
+            $product = DB::table('products')->where('id', '=', $id)->first();
             $product->delete();
 
             $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
