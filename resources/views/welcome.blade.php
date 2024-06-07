@@ -24,9 +24,9 @@
 								<header id="header">
 									<a href="index.html" class="logo"><strong>My Vape</strong> Store</a>
 									<ul class="icons">
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-whatsapp"><span class="label">Whats app</span></a></li>
-                                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a target="_blank" href="https://www.instagram.com/myvapestoree_/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a target="_blank" href="https://wa.me/5588997471277?text=Ol%C3%A1%2C+peguei+esse+contato+atrav%C3%A9s+do+seu+site" class="icon brands fa-whatsapp"><span class="label">Whats app</span></a></li>
+                                        {{-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> --}}
 									</ul>
 								</header>
 
