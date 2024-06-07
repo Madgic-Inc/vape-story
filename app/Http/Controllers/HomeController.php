@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
@@ -30,13 +31,13 @@ class HomeController extends Controller
     public function index()
     {
 
-        $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
+        $products = DB::table('products')->where('stock', '>', 0)->orderByDesc('id')->get();
         return view('admin.home')->with(['products' => $products]);
     }
 
     public function showProducts()
     {
-        $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
+        $products = DB::table('products')->where('stock', '>', 0)->orderByDesc('id')->get();
         return view('admin.list-products')->with([
             'products' => $products
         ]);
@@ -74,7 +75,7 @@ class HomeController extends Controller
                 'image' => $pathImage,
             ]);
 
-            $allProducts = Product::where('stock', '>', 0)->orderByDesc('id')->get();
+            $allProducts = DB::table('products')->where('stock', '>', 0)->orderByDesc('id')->get();
 
             return view('admin.list-products')->with([
                 'success' => 'Produto ' . $product->name . ' criado com sucesso',
@@ -93,7 +94,8 @@ class HomeController extends Controller
     public function updateProduct($id, Request $request)
     {
         try {
-            $product = Product::find($id);
+            $product = Product::where('id', $id)->first();
+
 
             $product->update([
                 'name' => $request->name,
