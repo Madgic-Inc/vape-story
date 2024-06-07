@@ -10,16 +10,14 @@ use Illuminate\Support\Facades\Storage;
 class HomeController extends Controller
 {
 
-    public $productModel;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(Product $product)
+    public function __construct()
     {
         $this->middleware('auth');
-        $this->productModel = $product;
     }
 
     /**
