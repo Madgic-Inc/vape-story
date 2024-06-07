@@ -1,17 +1,16 @@
-version: "3.8"
+version: '3'
 
 services:
   db:
-    image: mysql:latest
+    image: mysql:latest  # Use a specific version for better control (consider 8.0)
     container_name: mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
     volumes:
-      - mysqldata:/var/lib/mysql
+      - mysqldata:/var/lib/mysql  # Persistent storage for database data
+    environment:
+      MYSQL_DATABASE: myvape  # Use environment variables for credentials
+      MYSQL_USER: hansolo
+      MYSQL_PASSWORD: 3001  # Consider using a stronger password generator
 
 volumes:
-  mysqldata:
+  mysqldata:  # Volume name for persistent data
