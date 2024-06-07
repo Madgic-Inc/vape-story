@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
         return view('admin.home')->with(['products' => $products]);
     }
@@ -79,7 +80,7 @@ class HomeController extends Controller
                 'success' => 'Produto ' . $product->name . ' criado com sucesso',
                 'products' => $allProducts
             ],
-            
+
             );
         } catch (Exception $e) {
             return view('admin.list-products')->with([
