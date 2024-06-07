@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
         $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
         return view('admin.home')->with(['products' => $products]);
     }
@@ -86,6 +86,32 @@ class HomeController extends Controller
             return view('admin.list-products')->with([
                 'error' => 'Erro ao criar produto: ' . $e->getMessage(),
                 'products' => $allProducts
+            ]);
+        }
+    }
+
+    public function updateProduct($id, Request $request)
+    {
+        try {
+            $product = Product::find($id);
+
+            $product->update([
+                'name' => $request->name,
+                'value' => $request->value,
+                'stock' => $request->stock,
+                'description' => $request->description,
+            ]);
+
+            $prodcuts = Product::where('stock', '>', 0)->orderByDesc('id')->get();
+
+            return view('admin.list-products')->with([
+                'success' => 'Produto ' . $product->name . ' atualizado com sucesso',
+                'products' => $prodcuts
+            ]);
+        } catch (Exception $e) {
+            return view('admin.list-products')->with([
+                'error' => 'Erro ao atualizar produto: ' . $e->getMessage(),
+                'products' => $prodcuts
             ]);
         }
     }

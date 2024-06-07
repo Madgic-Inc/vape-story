@@ -17,3 +17,5 @@ Route::get('show-products',  [App\Http\Controllers\HomeController::class, 'showP
 
 Route::get('create-product',  [App\Http\Controllers\HomeController::class, 'createProduct'])->name('createProduct');
 Route::post('create-product',  [App\Http\Controllers\HomeController::class, 'storeProduct'])->name('storeProduct');
+
+Route::post('update-product/{id}',  [App\Http\Controllers\HomeController::class, 'updateProduct'])->name('updateProduct');
