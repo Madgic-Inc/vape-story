@@ -115,4 +115,24 @@ class HomeController extends Controller
             ]);
         }
     }
+
+    public function deleteProduct($id)
+    {
+        try {
+            $product = Product::find($id);
+            $product->delete();
+
+            $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
+
+            return view('admin.list-products')->with([
+                'success' => 'Produto ' . $product->name . ' deletado com sucesso',
+                'products' => $products
+            ]);
+        } catch (Exception $e) {
+            return view('admin.list-products')->with([
+                'error' => 'Erro ao deletar produto: ' . $e->getMessage(),
+                'products' => $products
+            ]);
+        }
+    }
 }

@@ -19,3 +19,4 @@ Route::get('create-product',  [App\Http\Controllers\HomeController::class, 'crea
 Route::post('create-product',  [App\Http\Controllers\HomeController::class, 'storeProduct'])->name('storeProduct');
 
 Route::post('update-product/{id}',  [App\Http\Controllers\HomeController::class, 'updateProduct'])->name('updateProduct');
+Route::delete('delete-product/{id}',  [App\Http\Controllers\HomeController::class, 'deleteProduct'])->name('deleteProduct');
