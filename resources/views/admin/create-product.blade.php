@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 
 @section('content')
-    @vite(['resources/js/app.js'])
     <!DOCTYPE html>
 <html lang="en">
 <head>

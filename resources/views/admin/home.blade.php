@@ -25,7 +25,6 @@
 @extends('adminlte::page')
 
 @section('content')
-    @vite(['resources/js/app.js'])
     <img src="" alt="">
 @endsection
 

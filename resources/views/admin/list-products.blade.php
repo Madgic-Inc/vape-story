@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 
 @section('content')
-    @vite(['resources/js/app.js'])
     @include('layouts.alert')
 
     <!DOCTYPE html>
