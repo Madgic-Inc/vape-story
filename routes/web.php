@@ -4,12 +4,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
+Route::get('/', [App\Http\Controllers\MainController::class, 'home'])->name('home');
 
-    return view('welcome')->with([
-        'products' => Product::where('stock', '>', 0)->orderByDesc('id')->get()
-    ]);
-});
 
 Auth::routes();
 

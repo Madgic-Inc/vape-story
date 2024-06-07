@@ -7,85 +7,19 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class HomeController extends Controller
+class MainController extends Controller
 {
-
-    public $productModel;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(Product $product)
-    {
-        $this->middleware('auth');
-        $this->productModel = $product;
-    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home()
     {
         $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
-        return view('admin.home')->with(['products' => $products]);
-    }
-
-    public function showProducts()
-    {
-        $products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
-        return view('admin.list-products')->with([
-            'products' => $products
-        ]);
-    }
-
-    public function createProduct()
-    {
-        return view('admin.create-product');
+        return view('welcome')->with(['products' => $products]);
     }
 
 
-    public function storeProduct(Request $request)
-    {
-        try {
-
-            $this->validate($request, [
-                'name' => 'required',
-                'value' => 'required|numeric',
-                'stock' => 'required|integer',
-                'description' => 'required',
-                'image' => 'required',
-            ]);
-
-            $product = Product::create([
-                'name' => $request->name,
-                'value' => $request->value,
-                'stock' => $request->stock,
-                'description' => $request->description,
-                'image' => null,
-            ]);
-
-            $pathImage = Storage::disk('public')->putFile('products-' . $product->id, $request->file('image'));
-
-            $product->update([
-                'image' => $pathImage,
-            ]);
-
-            $allProducts = Product::where('stock', '>', 0)->orderByDesc('id')->get();
-
-            return view('admin.list-products')->with([
-                'success' => 'Produto ' . $product->name . ' criado com sucesso',
-                'products' => $allProducts
-            ],
-
-            );
-        } catch (Exception $e) {
-            return view('admin.list-products')->with([
-                'error' => 'Erro ao criar produto: ' . $e->getMessage(),
-                'products' => $allProducts
-            ]);
-        }
-    }
 }
