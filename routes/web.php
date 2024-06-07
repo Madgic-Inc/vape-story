@@ -1,11 +1,13 @@
 <?php
 
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', [App\Http\Controllers\MainController::class, 'home'])->name('home');
-
+Route::get('/', function () {
+    $products = DB::table('products')->orderByDesc('id')->get();
+    return view('welcome')->with('products', $products);
+});
 
 Auth::routes();
 
