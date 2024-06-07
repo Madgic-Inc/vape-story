@@ -1,9 +1,15 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
+$products = Product::where('stock', '>', 0)->orderByDesc('id')->get();
+
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('welcome')->with([
+        'products' => Product::where('stock', '>', 0)->orderByDesc('id')->get()
+    ]);
 });
 
 Auth::routes();

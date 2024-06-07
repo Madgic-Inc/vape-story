@@ -49,7 +49,6 @@
 
                             <td>
                                 <img width="30" height="30" src="{{ asset('storage/' . $product->image) }}" />
-
                             </td>
                             <td>
                                 {{ $product->name }}
